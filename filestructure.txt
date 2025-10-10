@@ -1,0 +1,21 @@
+
+/project
+├── /application 
+│   ├── __init__.py - create_app() 
+│   ├── extensions.py 
+│   ├── /blueprints 
+│	│		├──/customers 
+│	│				├──__init__.py  
+│	│				├── routes.py  
+│	│				└── userSchemas.py
+│	│		├──/service_tickets 
+│	│				├──__init__.py  
+│	│				├── routes.py  
+│	│				└── userSchemas.py
+│	│		├──/mechanics
+│	│				├──__init__.py  
+│	│				├── routes.py  
+│	│				└── userSchemas.py
+│   └── models.py 
+├── app.py
+└── config.py 
