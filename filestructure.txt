@@ -16,6 +16,8 @@
 │	│				├──__init__.py  
 │	│				├── routes.py  
 │	│				└── userSchemas.py
+│	│		├──/utils # <-- New Folder
+│	│				├── util.py # <-- file for token functions
 │   └── models.py 
 ├── app.py
 └── config.py 

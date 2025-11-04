@@ -1,11 +1,12 @@
 # contructing application factor 
 
 from flask import Flask
-from .extensions import ma
-from .models import db
-from .blueprints.customers import customers_bp
-from .blueprints.mechanics import mechanics_bp
-from .blueprints.service_tickets import service_tickets_bp
+from app.extensions import ma, limiter, cache
+from app.models import db
+from app.blueprints.customers import customers_bp
+from app.blueprints.mechanics import mechanics_bp
+from app.blueprints.service_tickets import service_tickets_bp
+from app.blueprints.parts import parts_bp
 
 #this is our application factory
 def create_app(config_name):
@@ -16,6 +17,8 @@ def create_app(config_name):
     #initialize extensions
     ma.init_app(app)
     db.init_app(app)
+    limiter.init_app(app)
+    cache.init_app(app)
 
     # register blueprints
     # customers_bp is imported from app/blueprints/customers/__init__.py
@@ -24,5 +27,7 @@ def create_app(config_name):
     app.register_blueprint(mechanics_bp, url_prefix='/mechanics')
     # service_tickets_bp is imported from app/blueprints/service_tickets/__init__.py
     app.register_blueprint(service_tickets_bp, url_prefix='/service_tickets')
+    # inventory_bp is imported from app/blueprints/inventory/__init__.py
+    app.register_blueprint(parts_bp, url_prefix='/parts')
 
     return app
