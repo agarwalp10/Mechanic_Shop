@@ -1,2 +1,6 @@
+#evnironments
 venv/
 venv/
+
+# Python
+__pycache__/
