@@ -1,0 +1,61 @@
+#app/static/swagger.yaml
+
+swagger: '2.0'
+info:
+  title: "Mechanical Shop API"
+  description: "This is an API to manage a Mechanics shop"
+  version: "1.0.0"
+host: "127.0.0.1:5000" 
+schemes:
+  - "http"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+paths: #endpoints will go here
+  /customers/login:
+    post:
+      tags: #category within our documentation
+        - Customers
+      summary: "Login endpoint, (generates token)"
+      description: "Validates member credentials, generates and return a member specific token."
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Login credentials"
+          required: true
+          schema:
+            $ref: "#/definitions/LoginCredentials"
+      responses:
+        200:
+          description: "Successful login"
+          schema:
+            $ref: "#/definitions/LoginResponse"
+          examples: 
+            application/json:
+              token: "2928181829303029820sdjhfslkdfhsldfkjssdf..."
+              message: "Login successful"
+              status: "success"
+
+definitions: 
+
+  LoginCredentials: 
+    type: "object"
+    properties:
+      email:
+        type: "string"
+      password:
+        type: "string"
+    required:
+      - email
+      - password
+
+  LoginResponse:
+    type: "object"
+    properties:
+      token:
+        type: "string"
+      message:
+        type: "string"
+      status: 
+        type: "string"

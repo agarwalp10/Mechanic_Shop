@@ -16,8 +16,10 @@
 │	│				├──__init__.py  
 │	│				├── routes.py  
 │	│				└── userSchemas.py
-│	│		├──/utils # <-- New Folder
+│	│		├──/utils
 │	│				├── util.py # <-- file for token functions
+│	│		├──/static # <-- New Folder
+│	│				├── swagger.yaml <---- new file
 │   └── models.py 
 ├── app.py
 └── config.py 
