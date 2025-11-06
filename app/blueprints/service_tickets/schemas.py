@@ -5,11 +5,11 @@ from marshmallow import fields
 class TicketSchema(ma.SQLAlchemyAutoSchema):
     mechanics = fields.Nested("MechanicSchema", many=True)  # if you want to include mechanics details
     customer = fields.Nested("CustomerSchema")  # if you want to include customer details
+    parts = fields.Nested("PartSchema", many=True)  # if you want to include parts details
     class Meta:
         model = Ticket
         include_fk = True  # Include foreign keys in the schema
-        #i hope i have the right fields 
-        fields = ('id', 'VIN', 'service_date', 'service_desc', 'customer_id', 'mechanics', 'customer')
+        fields = ('id', 'VIN', 'service_date', 'service_desc', 'customer_id', 'mechanics', 'customer', 'parts')
 
 
 class EditTicketSchema(ma.Schema):

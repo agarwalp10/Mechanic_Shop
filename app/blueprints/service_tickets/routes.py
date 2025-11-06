@@ -1,9 +1,10 @@
 from .schemas import service_ticket_schema, service_tickets_schema, edit_ticket_schema, return_ticket_schema
 from app.blueprints.mechanics.schemas import mechanics_schema
+from app.blueprints.parts.schemas import parts_schema
 from flask import request, jsonify
 from marshmallow import ValidationError
 from sqlalchemy import select
-from app.models import Ticket, Mechanic, db
+from app.models import Ticket, Mechanic, Part, db
 from . import service_tickets_bp
 from app.extensions import limiter, cache
 from app.utils.util import encode_token, token_required
@@ -147,3 +148,26 @@ def update_service_ticket(service_ticket_id):
 
     db.session.commit()
     return return_ticket_schema.jsonify(ticket), 200
+
+
+#PUT - adding relationship between service ticket and part 
+@service_tickets_bp.route('/<int:service_ticket_id>/assign-part/<int:part_id>', methods=['PUT'])
+def add_part(service_ticket_id, part_id):
+    #get ticket and part 
+    ticket = db.session.get(Ticket, service_ticket_id)
+    part = db.session.get(Part, part_id)
+
+    # check if both are there, make sure part is not already assigned to ticket
+    if ticket and part: 
+        if part not in ticket.parts:
+            # add part to the ticket's parts list
+            ticket.parts.append(part)
+            db.session.commit()
+            return jsonify({
+                "message": "successfully added part to ticket",
+                "ticket": service_ticket_schema.dump(ticket),
+                "parts": parts_schema.dump(ticket.parts)
+            }), 200
+        return jsonify({"message": "Part already assigned to this ticket"}), 400
+    return jsonify({"message": "Ticket or Part not found"}), 404
+
