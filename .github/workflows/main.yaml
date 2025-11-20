@@ -1,0 +1,49 @@
+name: Flask CI # name of the workflow
+
+# specifies the events that will trigger the workflow 
+# the workflow will run on every push event tot he main or master branches
+on:
+  push:
+    branches: [main, master]
+
+# jobs: defines the jobs that make up the workflow
+# here only one job name "build" (arbitrary name)
+# runs-on: specifies the type of machine that will run the job, in this case, the job will
+# run on a machine with Ubuntu as the operating system
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # steps: a series of steps that will be executed as part of the job
+    # uses: specifies an action to use in the step
+    # actions/checkout@v2: checks out the repository so that the workflow can access the code
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+        #uses: action/setup-python@v2: sets up a specific version of Python on the runner machine
+        #with: specifies input parameters for the action
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.12 
+
+      - name: Create virtual environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Print debugging information
+        run: |
+          echo "Python Version: $(python --version)"
+          echo "Working Directory: $(pwd)"
+          echo "Contents of Working Directory: $(ls -l)"
+          echo "Contents of site-packages: $(ls -l venv/lib/python*/site-packages)"
+
+      - name: Run tests
+        run: python -m unittest discover -s tests -p 'test_*.py'
