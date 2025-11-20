@@ -41,7 +41,7 @@ def get_service_ticket(service_ticket_id):
         return service_ticket_schema.jsonify(ticket), 200
     return jsonify({"message": "Service Ticket not found"}), 404
 
-#GET SPECIFIC SERVICE TICKET BASED ON CUSTOMER ID
+#GET SPECIFIC SERVICE TICKET BASED ON CUSTOMER ID - customer id needed from token
 @service_tickets_bp.route('/my-ticket', methods=['GET'])
 @token_required
 def get_my_ticket(customer_id):

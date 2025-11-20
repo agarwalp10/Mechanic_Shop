@@ -7,8 +7,12 @@ class DevelopmentConfig:
     CACHE_TYPE = 'SimpleCache' #caching type
     CACHE_DEFAULT_TIMEOUT = 300 #cache timeout in seconds
 
+# test config to test our routes, we do not affect our development or production databases
 class TestingConfig:
-    pass
+    # sqlite:///testing.db is a lightweight database suitable for testing the creation and maniupulation of data
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///testing.db'
+    DEBUG = True
+    CACHE_TYPE = 'SimpleCache'
 
 class ProductionConfig: 
     pass
