@@ -16,4 +16,8 @@
 * Able to search for mechanics using GET
 * Using pagination to sort by pages
 * Created a new Model: Parts which has a many-to-many relationship with service tickets (junction table was used)
-* Using a PUT, we are able to add a part to the Service Ticket 
+* Using a PUT, we are able to add a part to the Service Ticket
+
+# Part 3: Documentation and Testing
+* Testing folder has tests for each model: customers, mechanics, parts, service_tickets
+* Each test file tests all routes for each bp
