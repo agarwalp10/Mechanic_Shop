@@ -1,5 +1,6 @@
 
 # adding in our config classes here
+import os # can reach into our development environment variables
 
 class DevelopmentConfig: 
     SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://root:bball1007@localhost/mechanic_db'
@@ -15,4 +16,6 @@ class TestingConfig:
     CACHE_TYPE = 'SimpleCache'
 
 class ProductionConfig: 
-    pass
+    SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI")
+    CACHE_TYPE = 'SimpleCache'
+    

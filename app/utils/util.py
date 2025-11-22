@@ -5,6 +5,7 @@ import jwt
 from datetime import datetime, timezone, timedelta
 from functools import wraps
 from flask import request, jsonify
+import os
 # we need request because when we sit this wrapper on one of the functions, it needs to be able to access the request
 # that is triggering that route
 # we will imbedde that token into that request
@@ -12,7 +13,7 @@ from flask import request, jsonify
 
 #for siging the token, will be needed for decoding
 #for production level, keep it in environment variable
-SECRET_KEY = "super secret secrets"
+SECRET_KEY = os.environ.get('SECRET_KEY') or "super secret secrets"
 
 def encode_token(customer_id):
     """
