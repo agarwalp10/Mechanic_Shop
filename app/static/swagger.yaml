@@ -11,7 +11,7 @@ info:
   title: "Mechanical Shop API"
   description: "This is an API to manage a Mechanics shop"
   version: "1.0.0"
-host: "mechanic-shop-1-vrdn.onrender.com
+host: "mechanic-shop-1-vrdn.onrender.com"
 schemes:
   - "https"
 consumes:
