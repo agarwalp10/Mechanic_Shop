@@ -21,3 +21,18 @@
 # Part 3: Documentation and Testing
 * Testing folder has tests for each model: customers, mechanics, parts, service_tickets
 * Each test file tests all routes for each bp
+
+
+# Contributing Guidelines
+
+## Running the Test Suite
+
+1. Create a virtual environment  
+   `python3 -m venv venv`
+
+2. Activate it  
+   - macOS/Linux: `source venv/bin/activate`  
+   - Windows: `venv\Scripts\activate`
+
+3. Install dependencies  
+   `pip install -r requirements.txt`

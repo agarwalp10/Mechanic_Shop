@@ -26,6 +26,16 @@ class TestPart(unittest.TestCase): #defines a test class inherting from unittest
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json['part_name'], "Brake Pad")
     
+    def test_invalid_creation(self):
+        # Test creating a part with missing required fields
+        part_payload = {
+            "part_name": "Oil Filter"
+            # Missing price field
+        }
+        response = self.client.post('/parts/', json=part_payload)
+        self.assertEqual(response.status_code, 400) # Expecting a 400 Bad Request
+        self.assertEqual(response.json['price'],['Missing data for required field.'])
+    
     def test_get_all_parts(self):
         response = self.client.get('/parts/')
         self.assertEqual(response.status_code, 200)

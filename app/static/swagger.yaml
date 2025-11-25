@@ -400,14 +400,12 @@ paths: #endpoints will go here
           name: "ticket_id"
           description: "Assigning ticket id"
           required: true
-          schema:
-            $ref: "#/definitions/AddTicketMechanicAssociation"
+          type: "integer"
         - in: "path"
           name: "mechanic_id"
           description: "Assigning mechanic id to service ticket using their respective IDs in the URL"
           required: true
-          schema:
-            $ref: "#/definitions/AddTicketMechanicAssociation"
+          type: "integer"
       responses:
         200:
           description: "Mechanic associated with Service Ticket successfully"
@@ -424,14 +422,12 @@ paths: #endpoints will go here
           name: "ticket_id"
           description: "ticket id"
           required: true
-          schema:
-            $ref: "#/definitions/AddTicketMechanicAssociation"
+          type: "integer"
         - in: "path"
           name: "mechanic_id"
           description: "Removing mechanic id from service ticket using their respective IDs in the URL"
           required: true
-          schema:
-            $ref: "#/definitions/RemoveTicketMechanicAssociation"
+          type: "integer"
       responses:
         200:
           description: "Mechanic removed from Service Ticket successfully"
@@ -448,14 +444,12 @@ paths: #endpoints will go here
           name: "ticket_id"
           description: "Assigning service ticket id using their respective IDs in the URL"
           required: true
-          schema:
-            $ref: "#/definitions/AddTicketPartAssociation"
+          type: "integer"
         - in: "path"
           name: "part_id"
           description: "Assigning part id their respective IDs in the URL"
           required: true
-          schema:
-            $ref: "#/definitions/AddTicketPartAssociation"
+          type: "integer"
       responses:
         200:
           description: "Part associated with Service Ticket successfully"
@@ -988,7 +982,7 @@ definitions:
       price:
         type: "float"
     required:
-      - name
+      - part_name
       - price
   
   CreatePartResponse:

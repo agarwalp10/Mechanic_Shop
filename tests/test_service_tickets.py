@@ -33,6 +33,18 @@ class TestTicket(unittest.TestCase): #defines a test class inherting from unitte
         self.assertEqual(response.status_code, 201)
         # self.assertEqual(response.json['VIN'], "2FTRX18W1XCA12345")
     
+    def test_invalid_creation(self):
+        # Test creating a ticket with missing required fields
+        ticket_payload = {
+            "VIN": "3GNEK18R5XG123456",
+            "service_date": "2023-12-01"
+            # Missing service_desc and customer_id fields
+        }
+        response = self.client.post('/service_tickets/', json=ticket_payload)
+        self.assertEqual(response.status_code, 400) # Expecting a 400 Bad Request
+        self.assertEqual(response.json['service_desc'],['Missing data for required field.'])
+        self.assertEqual(response.json['customer_id'],['Missing data for required field.'])
+    
     def test_get_all_tickets(self):
         response = self.client.get('/service_tickets/')
         self.assertEqual(response.status_code, 200)

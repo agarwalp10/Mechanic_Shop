@@ -27,6 +27,18 @@ class TestMechanic(unittest.TestCase): #defines a test class inherting from unit
         response = self.client.post('/mechanics/', json=mechanic_payload)
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.json['name'], "Mike Wazowski")
+
+    def test_invalid_creation(self):
+        # Test creating a mechanic with missing required fields
+        mechanic_payload = {
+            "name": "Sulley Smith",
+            "email": "smith@email.com",
+            "phone": "987-654-3210"
+            # Missing salary field
+        }
+        response = self.client.post('/mechanics/', json=mechanic_payload)
+        self.assertEqual(response.status_code, 400) # Expecting a 400 Bad Request
+        self.assertEqual(response.json['salary'],['Missing data for required field.'])
     
     def test_get_all_mechanics(self):
         response = self.client.get('/mechanics/')
