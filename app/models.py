@@ -21,6 +21,7 @@ ticket_mechanics = db.Table(
     db.Column('mechanic_id', db.ForeignKey('mechanics.id'))
 )
 
+# junction table for many-to-many relationship between Ticket and Part
 perts_ticket = db.Table(
     'ticket_part',
     db.Column('part_id', db.ForeignKey('parts.id')),

@@ -16,10 +16,14 @@
 │	│				├──__init__.py  
 │	│				├── routes.py  
 │	│				└── userSchemas.py
-│	│		├──/utils
-│	│				├── util.py # <-- file for token functions
-│	│		├──/static # <-- New Folder
-│	│				├── swagger.yaml <---- new file
+│	│		├──/parts
+│	│				├──__init__.py  
+│	│				├── routes.py  
+│	│				└── userSchemas.py
+│	├──/utils
+│	│		├── util.py # <-- file for token functions
+│	├──/static # <-- New Folder
+│	│		├── swagger.yaml <---- new file
 │   └── models.py 
-├── app.py
+├── flask_app.py
 └── config.py 

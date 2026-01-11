@@ -1,3 +1,4 @@
+# app/blueprints/customers/__init__.py
 # creating the customers blueprint
 
 from flask import Blueprint
