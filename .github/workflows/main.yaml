@@ -1,3 +1,6 @@
+# .github/workflows/main.yaml
+# This is a GitHub Actions workflow file for a Flask application. 
+
 name: Flask CI # name of the workflow
 
 # specifies the events that will trigger the workflow 
